@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7  # Utilisez l'image que vous avez construite pour le backend
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=devops
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    # Autres variables d'environnement pour votre application backend
+
+  myup:
+    container_name: supplier
+    image: raniatouihri/supplierdevops:1.0.0
+    depends_on:
+      - mysql
+    environment:
+      SPRING_APPLICATION_JSON: '{
+            "spring.datasource.url":"jdbc:mysql://mysql:3306/devops?useUnicode=true&useJDBCCompliantTimezoneShift=true&createDatabaseIfNotExist=true&useLegacyDatetimeCode=false&serverTimezone=UTC", 
+            "spring.datasource.username" : "root",
+            "spring.datasource.password" :  "",
+            "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+            "spring.jpa.hibernate.ddl-auto" : "update"
+          }'
+    ports:
+      - "8082:8082"
