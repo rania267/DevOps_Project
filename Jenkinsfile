@@ -10,7 +10,7 @@ pipeline {
            stage('Checkout GIT') {
             steps {
 
-            git branch: 'supplierservice_rania', url: 'https://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@hgithub.com/rania267/DevOps_Project'
+            git branch: 'main', url: 'https://github.com/rania267/DevOps_Project'
         }}
 
     stage('Maven Clean') {
