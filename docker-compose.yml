@@ -13,7 +13,7 @@ services:
 
   myup:
     container_name: supplier
-    image: raniatouihri/imageback:1.0
+    image: raniatouihri/image-back:1.0
     depends_on:
       - mysqli
     environment:
